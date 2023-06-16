@@ -4,3 +4,5 @@
 - Declaring Variables, Methods etc withing the Razor File and using those in the HTML code above the C# code
 - Using Loops and Conditions
 - Usage of MarkupString dynamically
+- Razor Components
+- Arbitary Parameters
