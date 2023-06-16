@@ -2,10 +2,81 @@
 @page "/firstPage"
 @page "/example/PageNo1"
 
-<h3>This is a Test Page</h3>
+<h4>Hey, <b>@getUsername()</b>. Welcome to the results page!</h4>
 
-<p>Hey there!</p>
+<p>Points: @getSum()</p>
+<p>Max points: @(3 * 3 + 1)</p>
+
+<p style="color: green;">Congrats, you <u>passed</u> the exam!</p>
+
+<button @onclick="@(() => { username = "Petar"; })">Change Name</button>
+<!--or you can call the function changeName -> @onclick="changeName"-->
+
+
+<br />
+<br />
+<p>
+    Additional user information: <br />
+    The @getUsername() is @userAge years of age, which means:
+</p>
+
+@if (userAge >= 18)
+{
+    <p>He'is allowed to drive!</p>
+}
+else
+{
+    <p>He'is not allowed drive!</p>
+}
+
+
+<br />
+<br />
+<p>Iteration with parsing html inside: </p>
+@foreach (var name in names)
+{
+    <p>Name: @name =====> @((MarkupString)name)</p>
+}
+
+
 
 @code {
+
+    private string username = "Manuel";
+    private int userAge = 16;
+    private List<string> names;
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        names = new List<string>
+        {
+            "Value - 01",
+            "Value - 02",
+            "<b>Value - 03</b>",
+            "Value - 04",
+            "Value - 05",
+            "Value - 06",
+            "Value - 07",
+            "Value - 08",
+            "<i>Value - 09</i>",
+        };
+    }
+
+    private string getUsername()
+    {
+        return username + " Fischer";
+    }
+
+    private void changeName()
+    {
+        username = "Petar";
+    }
+
+    private int getSum()
+    {
+        return 2 * 3;
+    }
 
 }

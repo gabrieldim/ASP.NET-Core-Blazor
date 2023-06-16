@@ -1,0 +1,13 @@
+﻿@using BlazorServerApp.Models;
+<!--Code is reusable and there is no atPage annotation at the beginning.-->
+
+<p>
+    <b>Name: </b> @currentContact.firstName @currentContact.lastName <br />
+    <b>Email: </b> <i>@currentContact.email</i>
+</p>
+
+@code{
+    [Parameter]
+    public Contact currentContact { get; set; }
+
+}

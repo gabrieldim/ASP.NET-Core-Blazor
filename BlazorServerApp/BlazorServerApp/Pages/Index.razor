@@ -1,78 +1,63 @@
 ﻿@page "/"
-
-<h4>Hey, <b>@getUsername()</b>. Welcome to the results page!</h4>
-
-<p>Points: @getSum()</p>
-<p>Max points: @(3*3+1)</p>
-
-<p style="color: green;">Congrats, you <u>passed</u> the exam!</p>
-
-<button @onclick="@(() => { username = "Petar"; })">Change Name</button>
-<!--or you can call the function changeName -> @onclick="changeName"-->
+@using BlazorServerApp.Models;
+<!--or we can also put the import in the file called "_Imports.razor"-->
 
 
-<br /><br />
-<p>
-    Additional user information: <br />
-    The @getUsername() is @userAge years of age, which means:
-</p>
+@using BlazorServerApp.Pages.ContactComponents;
 
-@if (userAge >= 18)
+<h4>User contacts: </h4>
+@foreach(var contact in contacts)
 {
-    <p>He'is allowed to drive!</p>
-}
-else
-{
-    <p>He'is not allowed drive!</p>
+    <ContactComponent01 currentContact="contact"></ContactComponent01>
 }
 
+<br />
+<!--
+<TextBox placeholder="Placeholder" type="text" disabled="disabled"></TextBox>
 
-<br /><br />
-<p>Iteration with parsing html inside: </p>
-@foreach(var name in names)
-{
-    <p>Name: @name =====> @((MarkupString)name)</p>
-}
+<TextBox @attributes="@(new Dictionary<string,object>{
+            { "disabled","disabled" },
+            { "type","text" },
+            { "placeholder","Placeholder" },
+        })"></TextBox>
+-->
+
+<TextBox @attributes="@textBoxAttributes"></TextBox>
 
 
-
-@code {
-
-    private string username = "Manuel";
-    private int userAge = 16;
-    private List<string> names;
-
+@code{
+    private List<Contact> contacts;
+    private Dictionary<string, object> textBoxAttributes = new Dictionary<string, object>
+    {
+         { "disabled","disabled" },
+         { "placeholder","First Name" },
+    };
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        names = new List<string>
+
+        contacts = new List<Contact>
         {
-            "Value - 01",
-            "Value - 02",
-            "<b>Value - 03</b>",
-            "Value - 04",
-            "Value - 05",
-            "Value - 06",
-            "Value - 07",
-            "Value - 08",
-            "<i>Value - 09</i>",
+            new Contact
+            {
+                firstName = "John",
+                lastName = "Smith",
+                email = "john.smith@example.com"
+            },
+            new Contact
+            {
+                firstName = "Emma",
+                lastName = "Johnson",
+                email = "emma.johnson@example.com"
+            },
+            new Contact
+            {
+                firstName = "Michael",
+                lastName = "Davis",
+                email = "michael.davis@example.com"
+            },
         };
-    }
-
-    private string getUsername()
-    {
-        return username + " Fischer";
-    }
-
-    private void changeName()
-    {
-        username = "Petar";
-    }
-
-    private int getSum()
-    {
-        return 2 * 3;
     }
 
 }
