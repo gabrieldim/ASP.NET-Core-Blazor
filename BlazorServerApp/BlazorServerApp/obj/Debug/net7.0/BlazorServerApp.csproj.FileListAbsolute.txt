@@ -62,3 +62,4 @@ C:\Users\Gabriel Dimitrievski\Desktop\dotNetBlazor\ASP.NET-Core-Blazor\BlazorSer
 C:\Users\Gabriel Dimitrievski\Desktop\dotNetBlazor\ASP.NET-Core-Blazor\BlazorServerApp\BlazorServerApp\obj\Debug\net7.0\BlazorServerApp.pdb
 C:\Users\Gabriel Dimitrievski\Desktop\dotNetBlazor\ASP.NET-Core-Blazor\BlazorServerApp\BlazorServerApp\obj\Debug\net7.0\BlazorServerApp.genruntimeconfig.cache
 C:\Users\Gabriel Dimitrievski\Desktop\dotNetBlazor\ASP.NET-Core-Blazor\BlazorServerApp\BlazorServerApp\obj\Debug\net7.0\ref\BlazorServerApp.dll
+C:\Users\Gabriel Dimitrievski\Desktop\dotNetBlazor\BlazorServerApp\BlazorServerApp\obj\Debug\net7.0\scopedcss\Pages\Index.razor.rz.scp.css

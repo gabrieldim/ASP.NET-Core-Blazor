@@ -5,11 +5,20 @@
 
 @using BlazorServerApp.Pages.ContactComponents;
 
-<h4>User contacts: </h4>
-@foreach(var contact in contacts)
-{
-    <ContactComponent01 currentContact="contact"></ContactComponent01>
-}
+<h1>Page of contacts</h1>
+<ContactList contacts="contacts">
+
+    <NullContacts>
+        <br />
+            <span>Contacts are loading ... (from Index.razor)</span>
+        <br />
+    </NullContacts>
+    
+    <EmptyContacts>
+        <p>No contacts to show. ... (from Index.razor)</p>
+    </EmptyContacts>
+
+</ContactList>
 
 <br />
 <!--
@@ -23,41 +32,3 @@
 -->
 
 <TextBox @attributes="@textBoxAttributes"></TextBox>
-
-
-@code{
-    private List<Contact> contacts;
-    private Dictionary<string, object> textBoxAttributes = new Dictionary<string, object>
-    {
-         { "disabled","disabled" },
-         { "placeholder","First Name" },
-    };
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        contacts = new List<Contact>
-        {
-            new Contact
-            {
-                firstName = "John",
-                lastName = "Smith",
-                email = "john.smith@example.com"
-            },
-            new Contact
-            {
-                firstName = "Emma",
-                lastName = "Johnson",
-                email = "emma.johnson@example.com"
-            },
-            new Contact
-            {
-                firstName = "Michael",
-                lastName = "Davis",
-                email = "michael.davis@example.com"
-            },
-        };
-    }
-
-}

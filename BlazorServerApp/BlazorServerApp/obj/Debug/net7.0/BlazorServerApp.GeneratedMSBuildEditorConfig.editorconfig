@@ -24,6 +24,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29udGFjdENvbXBvbmVudHNcQ29udGFjdENvbXBvbmVudDAxLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Gabriel Dimitrievski/Desktop/dotNetBlazor/BlazorServerApp/BlazorServerApp/Pages/ContactComponents/ContactList.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29udGFjdENvbXBvbmVudHNcQ29udGFjdExpc3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Gabriel Dimitrievski/Desktop/dotNetBlazor/BlazorServerApp/BlazorServerApp/Pages/ContactComponents/TextBox.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29udGFjdENvbXBvbmVudHNcVGV4dEJveC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -34,10 +38,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Gabriel Dimitrievski/Desktop/dotNetBlazor/BlazorServerApp/BlazorServerApp/Pages/FetchData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Gabriel Dimitrievski/Desktop/dotNetBlazor/BlazorServerApp/BlazorServerApp/Pages/Index.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Gabriel Dimitrievski/Desktop/dotNetBlazor/BlazorServerApp/BlazorServerApp/Pages/Test.razor]
@@ -51,6 +51,10 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/Gabriel Dimitrievski/Desktop/dotNetBlazor/BlazorServerApp/BlazorServerApp/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Gabriel Dimitrievski/Desktop/dotNetBlazor/BlazorServerApp/BlazorServerApp/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-6gblk87mqa
 
 [C:/Users/Gabriel Dimitrievski/Desktop/dotNetBlazor/BlazorServerApp/BlazorServerApp/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
