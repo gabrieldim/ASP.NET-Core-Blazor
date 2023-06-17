@@ -1,5 +1,10 @@
-﻿@page "/carListData"
+﻿@inject NavigationManager NavigationManager
+
+@page "/carListData"
+
 @using BlazorServerApp.Models
+@using System.IO;
+@using OfficeOpenXml;
 
 <PageTitle>Car Table</PageTitle>
 
@@ -33,3 +38,45 @@
 
 <p><i>If the car has passed over <b>200,000 km</b>, it's not recommended to buy it if you are planning long distance trips.</i></p>
 
+<button class="btn btn-primary" @onclick="ExportToExcel">Export to Excel</button>
+
+@code{
+    private void ExportToExcel()
+    {
+        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+        using (var package = new ExcelPackage())
+        {
+            var worksheet = package.Workbook.Worksheets.Add("Car Data");
+
+            // headers
+            worksheet.Cells[1, 1].Value = "Name";
+            worksheet.Cells[1, 2].Value = "Year";
+            worksheet.Cells[1, 3].Value = "Price";
+            worksheet.Cells[1, 4].Value = "Kilometers";
+
+            int row = 2;
+            foreach (var car in carList)
+            {
+                worksheet.Cells[row, 1].Value = car.name;
+                worksheet.Cells[row, 2].Value = car.year;
+                worksheet.Cells[row, 3].Value = car.price;
+                worksheet.Cells[row, 4].Value = car.km;
+
+                row++;
+            }
+
+            worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+
+            using (var stream = new MemoryStream())
+            {
+                package.SaveAs(stream);
+
+                var buffer = stream.ToArray();
+                var mimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                NavigationManager.NavigateTo($"data:{mimeType};base64,{Convert.ToBase64String(buffer)}", true);
+            }
+        }
+    }
+}
