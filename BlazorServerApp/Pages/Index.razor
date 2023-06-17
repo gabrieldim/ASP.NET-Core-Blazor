@@ -1,0 +1,23 @@
+﻿@page "/example/PageNo1"
+@using BlazorServerApp.Models;
+<!--or we can also put the import in the file called "_Imports.razor"-->
+
+
+@using BlazorServerApp.Pages.ContactComponents;
+
+<h1>Page of contacts</h1>
+<ContactList contacts="contacts">
+
+    <NullContacts>
+        <br />
+            <span>Contacts are loading ... </span>
+        <br />
+    </NullContacts>
+    
+    <EmptyContacts>
+        <p>No contacts to show.</p>
+    </EmptyContacts>
+
+</ContactList>
+
+<br />
