@@ -1,6 +1,8 @@
 ﻿@inject NavigationManager NavigationManager
 
 @page "/carListData"
+@page "/"
+
 
 @using BlazorServerApp.Models
 @using System.IO;
@@ -31,7 +33,29 @@
         <label>Kilometers:</label>
         <input type="number" @bind="@newCar.km" />
 
-        <button class="btn btn-success" @onclick="AddCar">Add</button>
+        <div>
+            @if (string.IsNullOrWhiteSpace(newCar.name))
+            {
+                <p class="text-danger">Please enter a name.</p>
+            }
+
+            @if (newCar.year <= 0)
+            {
+                <p class="text-danger">Please enter a valid year.</p>
+            }
+
+            @if (newCar.price <= 0)
+            {
+                <p class="text-danger">Please enter a valid price.</p>
+            }
+
+            @if (newCar.km <= 0)
+            {
+                <p class="text-danger">Please enter a valid number of kilometers.</p>
+            }
+        </div>
+
+        <button class="btn btn-success" @onclick="AddCar" disabled="@(!IsCarValid())">Add</button>
         <button class="btn btn-danger" @onclick="CancelAdd">Cancel</button>
     </div>
 }
@@ -71,6 +95,17 @@
     private bool showAddForm;
     private Car newCar = new Car();
 
+
+    private bool IsCarValid()
+    {
+        if(string.IsNullOrWhiteSpace(newCar.name) || newCar.year <= 1900 || newCar.price <= 0 || newCar.km <= 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    
     private void ShowAddForm()
     {
         showAddForm = true;
@@ -132,6 +167,5 @@
     {
         carList.Remove(car);
     }
-
 
 }
