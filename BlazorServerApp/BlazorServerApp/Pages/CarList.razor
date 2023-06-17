@@ -1,0 +1,35 @@
+﻿@page "/carListData"
+@using BlazorServerApp.Models
+
+<PageTitle>Car Table</PageTitle>
+
+<h1>Car Data</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Year</th>
+            <th>Price</th>
+            <th>Kilometers</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in carList)
+        {
+
+            <tr style="@(car.km > 200000 ? "color: red;" : "color: green;")">
+                <td>@car.name</td>
+                <td>@car.year</td>
+                <td>@car.price</td>
+                <td>@car.km</td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+<br />
+
+<p><i>If the car has passed over <b>200,000 km</b>, it's not recommended to buy it if you are planning long distance trips.</i></p>
+

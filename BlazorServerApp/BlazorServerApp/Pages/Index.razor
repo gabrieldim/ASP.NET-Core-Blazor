@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/example/PageNo1"
 @using BlazorServerApp.Models;
 <!--or we can also put the import in the file called "_Imports.razor"-->
 
@@ -21,14 +21,3 @@
 </ContactList>
 
 <br />
-<!--
-<TextBox placeholder="Placeholder" type="text" disabled="disabled"></TextBox>
-
-<TextBox @attributes="@(new Dictionary<string,object>{
-            { "disabled","disabled" },
-            { "type","text" },
-            { "placeholder","Placeholder" },
-        })"></TextBox>
--->
-
-<TextBox @attributes="@textBoxAttributes"></TextBox>
