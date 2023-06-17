@@ -36,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5pdGlhbERhdGEucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Gabriel Dimitrievski/Desktop/dotNetBlazor/BlazorServerApp/BlazorServerApp/Pages/RevenueData.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmV2ZW51ZURhdGEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Gabriel Dimitrievski/Desktop/dotNetBlazor/BlazorServerApp/BlazorServerApp/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

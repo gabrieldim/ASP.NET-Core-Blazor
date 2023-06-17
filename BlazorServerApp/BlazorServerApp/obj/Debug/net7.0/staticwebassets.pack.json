@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\BlazorServerApp.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Gabriel Dimitrievski\\Desktop\\dotNetBlazor\\BlazorServerApp\\BlazorServerApp\\wwwroot\\chart.js",
+      "PackagePath": "staticwebassets\\chart.js"
+    },
+    {
       "Id": "C:\\Users\\Gabriel Dimitrievski\\Desktop\\dotNetBlazor\\BlazorServerApp\\BlazorServerApp\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },

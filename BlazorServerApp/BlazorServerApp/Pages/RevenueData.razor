@@ -1,0 +1,22 @@
+﻿@page "/revenue"
+
+<h3>Revenue</h3>
+
+<div style="width: 500px; height: 500px;">
+    <canvas id="pieChart" style="width: 100%; height: 100%;"></canvas>
+</div>
+
+
+@code {
+    [Inject]
+    private IJSRuntime JSRuntime { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("createPieChart", revenueList);
+        }
+    }
+
+}
