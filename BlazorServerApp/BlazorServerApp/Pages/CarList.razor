@@ -13,6 +13,29 @@
 <p><i>If the car has passed over <b>200,000 km</b>, it's not recommended to buy it if you are planning long distance trips.</i></p>
 
 
+<button class="btn btn-primary" @onclick="ShowAddForm">Add Car</button>
+
+@if (showAddForm)
+{
+    <h2>Add Car</h2>
+    <div>
+        <label>Name:</label>
+        <input type="text" @bind="@newCar.name" />
+
+        <label>Year:</label>
+        <input type="number" @bind="@newCar.year" />
+
+        <label>Price:</label>
+        <input type="number" @bind="@newCar.price" />
+
+        <label>Kilometers:</label>
+        <input type="number" @bind="@newCar.km" />
+
+        <button class="btn btn-success" @onclick="AddCar">Add</button>
+        <button class="btn btn-danger" @onclick="CancelAdd">Cancel</button>
+    </div>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -44,6 +67,28 @@
 <button class="btn btn-primary" @onclick="ExportToExcel">Export to Excel</button>
 
 @code {
+
+    private bool showAddForm;
+    private Car newCar = new Car();
+
+    private void ShowAddForm()
+    {
+        showAddForm = true;
+    }
+
+    private void AddCar()
+    {
+        carList.Add(newCar);
+        showAddForm = false;
+        newCar = new Car();
+    }
+
+    private void CancelAdd()
+    {
+        showAddForm = false;
+        newCar = new Car();
+    }
+
     private void ExportToExcel()
     {
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
