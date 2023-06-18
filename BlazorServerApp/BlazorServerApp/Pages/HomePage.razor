@@ -1,0 +1,51 @@
+﻿@page "/"
+
+<h3>Welcome to our Car Dealership</h3>
+
+<p>We are working since 2018 have a great trust from our customers and when it comes to our product range, we exclusively 
+    offer exceptional items that come with a comprehensive insurance package, covering up to three years of protection, 
+    even for older vehicles.</p>
+
+
+<h4>
+    You can call us anytime or you can also visit us on our location. <br />
+    Check out our location:
+</h4>
+<div id="map" style="height: 550px; width: 550px; margin-left: 30px; margin-top: 20px; "></div>
+
+@code {
+
+    [Inject]
+    private IJSRuntime JSRuntime { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await LoadGoogleMapsScript();
+        }
+    }
+    /// <summary>
+    /// Logic for loading Google Maps location (embeded) in our website.
+    /// </summary>
+    private async Task LoadGoogleMapsScript()
+    {
+        await JSRuntime.InvokeVoidAsync("eval", @"
+            window.initializeMap = () => {
+                   var map = new google.maps.Map(document.getElementById('map'), 
+                    { center: { lat: 47.5596, lng: 7.5886 }, zoom: 8 });
+
+                   var marker = new google.maps.Marker({ position: { lat: 47.5596, lng: 7.5886 }, 
+                    map: map, title: 'Car Dealership Location!' });
+                };
+
+            if (typeof google === 'undefined') {
+                var script = document.createElement('script');
+                script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBNjghFU3qExpfPRfMdPYW03mvWdirUBd4&callback=initializeMap';
+                document.head.appendChild(script);
+            } else {
+                window.initializeMap();
+            }
+        ");
+    }
+}
