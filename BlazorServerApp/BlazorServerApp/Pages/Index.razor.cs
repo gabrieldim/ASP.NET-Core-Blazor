@@ -5,11 +5,7 @@ namespace BlazorServerApp.Pages
     public partial class Index
     {
         private List<Contact> contacts;
-        private Dictionary<string, object> textBoxAttributes = new Dictionary<string, object>
-    {
-         { "disabled","disabled" },
-         { "placeholder","First Name" },
-    };
+
 
         protected async override Task OnInitializedAsync()
         {

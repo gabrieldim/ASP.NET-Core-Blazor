@@ -41,7 +41,7 @@
 
             @if (newCar.year <= 0)
             {
-                <p class="text-danger">Please enter a valid year.</p>
+                <p class="text-danger">Please enter a valid year.(above 1980 only)</p>
             }
 
             @if (newCar.price <= 0)
@@ -95,22 +95,29 @@
     private bool showAddForm;
     private Car newCar = new Car();
 
-
+    /// <summary>
+    /// Form check if the entered values from the form are acceptable for the car
+    /// </summary>
     private bool IsCarValid()
     {
-        if(string.IsNullOrWhiteSpace(newCar.name) || newCar.year <= 1900 || newCar.price <= 0 || newCar.km <= 0)
+        if(string.IsNullOrWhiteSpace(newCar.name) || newCar.year <= 1980 || newCar.price <= 0 || newCar.km <= 0)
         {
             return false;
         }
         return true;
     }
 
-    
+    /// <summary>
+    /// Flag, whether to show to form for Adding a new car or not.
+    /// </summary>
     private void ShowAddForm()
     {
         showAddForm = true;
     }
 
+    /// <summary>
+    /// Add a new car.
+    /// </summary>
     private void AddCar()
     {
         carList.Add(newCar);
@@ -118,12 +125,23 @@
         newCar = new Car();
     }
 
+    /// <summary>
+    /// Hide the Add form and don't add a new Car to the available car list.
+    /// </summary>
     private void CancelAdd()
     {
         showAddForm = false;
         newCar = new Car();
     }
 
+
+    /// <summary>
+    /// Exports data to an Excel file.
+    /// </summary>
+    /// <remarks>
+    /// This method uses the EPPlus library to generate an Excel file from car data.
+    /// </remarks>
+    /// <exception cref="LicenseException">Thrown if the license for EPPlus is not valid.</exception>
     private void ExportToExcel()
     {
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -163,6 +181,9 @@
         }
     }
 
+    /// <summary>
+    /// Delete a car from the List of available cars.
+    /// </summary>
     private void DeleteCar(Car car)
     {
         carList.Remove(car);
