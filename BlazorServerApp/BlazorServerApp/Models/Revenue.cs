@@ -1,10 +1,11 @@
-﻿namespace BlazorServerApp.Models
-{
-    [Serializable]
-    public class Revenue
-    {
-        public float year { get; set; }
+﻿using System;
+using System.Collections.Generic;
 
-        public float amount { get; set; }
-    }
+namespace BlazorServerApp.Models;
+
+public partial class Revenue
+{
+    public double year { get; set; }
+
+    public double? amount { get; set; }
 }

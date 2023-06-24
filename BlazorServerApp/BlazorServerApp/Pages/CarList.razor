@@ -5,6 +5,10 @@
 @using BlazorServerApp.Models
 @using System.IO;
 @using OfficeOpenXml;
+@using BlazorServerApp.Pages
+@using BlazorServerApp.Service
+
+
 
 <PageTitle>Car Table</PageTitle>
 
@@ -92,6 +96,16 @@
 
     private bool showAddForm;
     private Car newCar = new Car();
+    private List<Car> carList;
+
+    [Inject]
+    public ICarService CarService { get; set; }
+
+    protected override void OnInitialized()
+    {
+        carList = CarService.getCars();
+        base.OnInitialized();
+    }
 
     /// <summary>
     /// Form check if the entered values from the form are acceptable for the car
@@ -185,6 +199,7 @@
     private void DeleteCar(Car car)
     {
         carList.Remove(car);
+        CarService.DeleteCar(car);
     }
 
 }

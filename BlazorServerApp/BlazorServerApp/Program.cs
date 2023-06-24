@@ -1,4 +1,6 @@
 using BlazorServerApp.Data;
+using BlazorServerApp.Models;
+using BlazorServerApp.Service;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -8,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddScoped<ICarService, CarService>();
+builder.Services.AddDbContext<TestContext>(); // Add this line to register TestContext
 
 var app = builder.Build();
 
@@ -17,11 +21,8 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error");
 }
 
-
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
