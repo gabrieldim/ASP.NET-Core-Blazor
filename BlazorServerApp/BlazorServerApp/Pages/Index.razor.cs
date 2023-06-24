@@ -4,7 +4,7 @@ namespace BlazorServerApp.Pages
 {
     public partial class Index
     {
-        private List<Contact> contacts;
+       /* private List<Contact> contacts;
 
 
         protected async override Task OnInitializedAsync()
@@ -32,7 +32,7 @@ namespace BlazorServerApp.Pages
             },
         };
             base.OnInitializedAsync();
-        }
+        }*/
 
     }
 }

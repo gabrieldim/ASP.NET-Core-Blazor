@@ -5,29 +5,28 @@ using System.Text;
 
 namespace BlazorServerApp.Service
 {
-    public class RevenueService : IRevenueService
+    public class ContactsService : IContactsService
     {
-
         /// <summary>
         /// Variable used to be able to connect to the database
         /// </summary>
         private readonly TestContext _dbContext = null;
 
-
         /// <summary>
         /// Constructor for database context
         /// </summary>
-        public RevenueService(TestContext dbContext)
+        public ContactsService(TestContext dbContext)
         {
             this._dbContext = dbContext;
         }
 
         /// <summary>
-        /// Fetch all revenues from the DB
+        /// Fetch the data for the contacts from the DB
         /// </summary>
-        public List<Revenue> getRevenues()
+        public List<Contact> getContacts()
         {
-            return _dbContext.Revenues.ToList();
+            return _dbContext.Contacts.ToList();
         }
+
     }
 }

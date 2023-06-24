@@ -1,12 +1,13 @@
 ﻿@page "/contacts"
 @using BlazorServerApp.Models;
+@using BlazorServerApp.Service;
 <!--or we can also put the import in the file called "_Imports.razor"-->
 
 
 @using BlazorServerApp.Pages.ContactComponents;
 
 <h1>Page of contacts</h1>
-<ContactList contacts="contacts">
+<ContactList contacts="contactList">
 
     <NullContacts>
         <br />
@@ -21,3 +22,16 @@
 </ContactList>
 
 <br />
+
+@code {
+    private List<Contact> contactList;
+
+    [Inject]
+    public IContactsService contactService { get; set; }
+
+    protected override void OnInitialized()
+    {
+        contactList = contactService.getContacts();
+        base.OnInitialized();
+    }
+}
