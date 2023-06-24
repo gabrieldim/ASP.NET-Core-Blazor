@@ -8,7 +8,7 @@ namespace BlazorServerApp.Pages
     public partial class RevenueData : ComponentBase
     {
 
-        private List<Revenue> revenueList;
+      /*  private List<Revenue> revenueList;
 
         public RevenueData()
         {
@@ -45,7 +45,7 @@ namespace BlazorServerApp.Pages
                 amount = 480000,
             },
            };
-        }
+        }*/
 
     }
 }

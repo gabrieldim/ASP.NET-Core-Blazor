@@ -10,8 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddDbContext<TestContext>(); // Add this line to register TestContext
+builder.Services.AddScoped<IRevenueService, RevenueService>(); // Add this line to register IRevenueService
+builder.Services.AddScoped<ICarService, CarService>();
 
 var app = builder.Build();
 

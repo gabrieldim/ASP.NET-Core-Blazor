@@ -1,4 +1,6 @@
 ﻿@page "/revenue"
+@using BlazorServerApp.Models;
+@using BlazorServerApp.Service;
 
 <h3>Revenue by year</h3>
 
@@ -10,6 +12,18 @@
 @code {
     [Inject]
     private IJSRuntime JSRuntime { get; set; }
+
+    private List<Revenue> revenueList;
+
+    [Inject]
+    public IRevenueService revenueService { get; set; }
+
+    protected override void OnInitialized()
+    {
+        revenueList = revenueService.getRevenues();
+        base.OnInitialized();
+    }
+
 
     /// <summary>
     /// Async function that is calling createPieChart function from charts.js file in order to create the Pie divided by year.

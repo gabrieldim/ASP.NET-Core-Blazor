@@ -11,5 +11,7 @@ namespace BlazorServerApp.Service
         List<Car> getCars();
 
         void DeleteCar(Car car);
+
+        void AddCar(Car car);
     }
 }

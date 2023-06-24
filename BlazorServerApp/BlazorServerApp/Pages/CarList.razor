@@ -132,9 +132,13 @@
     /// </summary>
     private void AddCar()
     {
-        carList.Add(newCar);
-        showAddForm = false;
-        newCar = new Car();
+
+       carList.Add(newCar);
+       CarService.AddCar(newCar);
+
+       showAddForm = false;
+       newCar = new Car();
+        
     }
 
     /// <summary>

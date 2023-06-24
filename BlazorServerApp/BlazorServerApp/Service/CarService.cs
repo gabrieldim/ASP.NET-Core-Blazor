@@ -24,5 +24,10 @@ namespace BlazorServerApp.Service
             _dbContext.Cars.Remove(car);
             _dbContext.SaveChanges();
         }
+        public void AddCar(Car car)
+        {
+            _dbContext.Cars.Add(car);
+            _dbContext.SaveChanges();
+        }
     }
 }
