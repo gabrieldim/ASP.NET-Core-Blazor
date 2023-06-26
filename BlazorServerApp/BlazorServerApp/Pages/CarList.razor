@@ -201,54 +201,57 @@
     /// This method uses the EPPlus library to generate an Excel file from car data.
     /// </remarks>
     /// <exception cref="LicenseException">Thrown if the license for EPPlus is not valid.</exception>
-    private void ExportToExcel()
+private void ExportToExcel()
+{
+    ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+    using (var package = new ExcelPackage())
     {
-        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+        var worksheet = package.Workbook.Worksheets.Add("Car Data");
 
-        using (var package = new ExcelPackage())
+        // headers
+        worksheet.Cells[1, 1].Value = "Name";
+        worksheet.Cells[1, 2].Value = "Year";
+        worksheet.Cells[1, 3].Value = "Price";
+        worksheet.Cells[1, 4].Value = "Kilometers";
+
+        int row = 2;
+        foreach (var car in carList)
         {
-            var worksheet = package.Workbook.Worksheets.Add("Car Data");
+            worksheet.Cells[row, 1].Value = car.name;
+            worksheet.Cells[row, 2].Value = car.year;
+            worksheet.Cells[row, 3].Value = car.price;
+            worksheet.Cells[row, 4].Value = car.km;
 
-            // headers
-            worksheet.Cells[1, 1].Value = "Name";
-            worksheet.Cells[1, 2].Value = "Year";
-            worksheet.Cells[1, 3].Value = "Price";
-            worksheet.Cells[1, 4].Value = "Kilometers";
-
-            int row = 2;
-            foreach (var car in carList)
+            // Check the value of "km" and apply text color
+            if (car.km > 200000)
             {
-                worksheet.Cells[row, 1].Value = car.name;
-                worksheet.Cells[row, 2].Value = car.year;
-                worksheet.Cells[row, 3].Value = car.price;
-                worksheet.Cells[row, 4].Value = car.km;
-
-                // Check the value of "km" and apply text color
-                if (car.km > 200000)
-                {
-                    worksheet.Cells[row, 1, row, 4].Style.Font.Color.SetColor(System.Drawing.Color.Red);
-                }
-                else
-                {
-                    worksheet.Cells[row, 1, row, 4].Style.Font.Color.SetColor(System.Drawing.Color.Green);
-                }
-
-                row++;
+                worksheet.Cells[row, 1, row, 4].Style.Font.Color.SetColor(System.Drawing.Color.Red);
+            }
+            else
+            {
+                worksheet.Cells[row, 1, row, 4].Style.Font.Color.SetColor(System.Drawing.Color.Green);
             }
 
-            worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+            row++;
+        }
 
+        worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
-            using (var stream = new MemoryStream())
-            {
-                package.SaveAs(stream);
+        // Add borders to all cells
+        var border = worksheet.Cells[1, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column].Style.Border;
+        border.Top.Style = border.Left.Style = border.Right.Style = border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
 
-                var buffer = stream.ToArray();
-                var mimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                NavigationManager.NavigateTo($"data:{mimeType};base64,{Convert.ToBase64String(buffer)}", true);
-            }
+        using (var stream = new MemoryStream())
+        {
+            package.SaveAs(stream);
+
+            var buffer = stream.ToArray();
+            var mimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            NavigationManager.NavigateTo($"data:{mimeType};base64,{Convert.ToBase64String(buffer)}", true);
         }
     }
+}
 
 
 
