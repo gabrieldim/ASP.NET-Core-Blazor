@@ -8,8 +8,6 @@
 @using BlazorServerApp.Pages
 @using BlazorServerApp.Service
 
-
-
 <PageTitle>Car Table</PageTitle>
 
 <h1>Cars Data</h1>
@@ -43,7 +41,7 @@
 
             @if (newCar.year <= 0)
             {
-                <p class="text-danger">Please enter a valid year.(above 1980 only)</p>
+                <p class="text-danger">Please enter a valid year. (above 1980 only)</p>
             }
 
             @if (newCar.price <= 0)
@@ -66,8 +64,20 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Year</th>
-            <th>Price</th>
+            <th>
+                <div style="display: flex; align-items: center;">
+                    Year
+                    <button class="btn btn-link" @onclick="SortByYearAscending">&#9650;</button>
+                    <button class="btn btn-link" @onclick="SortByYearDescending">&#9660;</button>
+                </div>
+            </th>
+            <th>
+                <div style="display: flex; align-items: center;">
+                    Price
+                    <button class="btn btn-link" @onclick="SortByPriceAscending">&#9650;</button>
+                    <button class="btn btn-link" @onclick="SortByPriceDescending">&#9660;</button>
+                </div>
+            </th>
             <th>Kilometers</th>
             <th>Management</th>
         </tr>
@@ -75,7 +85,6 @@
     <tbody>
         @foreach (var car in carList)
         {
-
             <tr style="@(car.km > 200000 ? "color: red;" : "color: green;")">
                 <td>@car.name</td>
                 <td>@car.year</td>
@@ -83,7 +92,6 @@
                 <td>@car.km</td>
                 <td><button class="btn btn-danger" @onclick="() => DeleteCar(car)">Delete</button></td>
             </tr>
-
         }
     </tbody>
 </table>
@@ -91,6 +99,8 @@
 <br />
 
 <button class="btn btn-primary" @onclick="ExportToExcel">Export to Excel</button>
+
+
 
 @code {
 
@@ -106,6 +116,39 @@
         carList = CarService.getCars();
         base.OnInitialized();
     }
+
+    /// <summary>
+    /// Sort the values by Year ascending
+    /// </summary>
+    private void SortByYearAscending()
+    {
+        carList = carList.OrderBy(c => c.year).ToList();
+    }
+
+    /// <summary>
+    /// Sort the values by Year descending
+    /// </summary>
+    private void SortByYearDescending()
+    {
+        carList = carList.OrderByDescending(c => c.year).ToList();
+    }
+
+    /// <summary>
+    /// Sort the values by Price ascending
+    /// </summary>
+    private void SortByPriceAscending()
+    {
+        carList = carList.OrderBy(c => c.price).ToList();
+    }
+
+    /// <summary>
+    /// Sort the values by Price descending
+    /// </summary>
+    private void SortByPriceDescending()
+    {
+        carList = carList.OrderByDescending(c => c.price).ToList();
+    }
+
 
     /// <summary>
     /// Form check if the entered values from the form are acceptable for the car
