@@ -223,6 +223,16 @@
                 worksheet.Cells[row, 3].Value = car.price;
                 worksheet.Cells[row, 4].Value = car.km;
 
+                // Check the value of "km" and apply text color
+                if (car.km > 200000)
+                {
+                    worksheet.Cells[row, 1, row, 4].Style.Font.Color.SetColor(System.Drawing.Color.Red);
+                }
+                else
+                {
+                    worksheet.Cells[row, 1, row, 4].Style.Font.Color.SetColor(System.Drawing.Color.Green);
+                }
+
                 row++;
             }
 
@@ -239,6 +249,8 @@
             }
         }
     }
+
+
 
     /// <summary>
     /// Delete a car from the List of available cars.
