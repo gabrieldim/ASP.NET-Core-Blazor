@@ -13,5 +13,7 @@ namespace BlazorServerApp.Service
         void DeleteCar(Car car);
 
         void AddCar(Car car);
+
+        Task<int> GetCarCountWithNameStartingWithAsync(string name);
     }
 }

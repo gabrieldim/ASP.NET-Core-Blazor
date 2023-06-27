@@ -7,6 +7,7 @@
 @using OfficeOpenXml;
 @using BlazorServerApp.Pages
 @using BlazorServerApp.Service
+@using System.Diagnostics
 
 <PageTitle>Car Table</PageTitle>
 
@@ -60,6 +61,26 @@
     </div>
 }
 
+<br />
+<br />
+<br />
+
+<h4>Lambda Expression performance testing: </h4>
+<button @onclick="IterateCarList">Iterate Car List</button>
+<p>Start Time: <label>@startTimeWithLambdaExpression</label></p>
+<p>End Time: <label>@endTimeWithLambdaExpression</label></p>
+<p>Counter: <label>@counterWithLambdaExpression</label></p>
+
+<br />
+<br />
+<br />
+
+<h4>Storage Procedure performance testing: </h4>
+<button @onclick="IterateCarListWithStoredProcedure">Iterate Car List</button>
+<p>Start Time: <label>@startTimeWithStoredProcedure</label></p>
+<p>End Time: <label>@endTimeWithStoredProcedure</label></p>
+<p>Counter: <label>@carCountWithStoredProcedure</label></p>
+
 <table class="table">
     <thead>
         <tr>
@@ -100,6 +121,9 @@
 
 <button class="btn btn-primary" @onclick="ExportToExcel">Export to Excel</button>
 
+<br /> <br /> <br />
+
+
 
 
 @code {
@@ -108,6 +132,15 @@
     private Car newCar = new Car();
     private List<Car> carList;
 
+
+    private int counterWithLambdaExpression;
+    private string startTimeWithLambdaExpression;
+    private string endTimeWithLambdaExpression;
+
+    private int carCountWithStoredProcedure;
+    private string startTimeWithStoredProcedure;
+    private string endTimeWithStoredProcedure;
+
     [Inject]
     public ICarService CarService { get; set; }
 
@@ -115,7 +148,60 @@
     {
         carList = CarService.getCars();
         base.OnInitialized();
+        for (var i = 1; i < 25000; i++)
+        {
+            Car car = new Car();
+
+            if (i > 250 && i < 350)
+            {
+                car.name = "HEY - " + i.ToString();
+            }
+            else
+            {
+                car.name = "Test - " + i.ToString();
+            }
+            car.price = 4000;
+            car.year = 2009;
+            car.km = 100000;
+
+
+            //   CarService.AddCar(car);
+        }
     }
+
+    /// <summary>
+    /// Lambda expression performance testing - time
+    /// </summary>
+    private void IterateCarList()
+    {
+        // Start timer
+        var stopwatch = Stopwatch.StartNew();
+        startTimeWithLambdaExpression = DateTime.Now.ToString();
+
+        counterWithLambdaExpression = carList.Count(car => car.name.StartsWith("Test"));
+
+        // Stop timer
+        stopwatch.Stop();
+        endTimeWithLambdaExpression = DateTime.Now.ToString();
+    }
+
+    /// <summary>
+    /// Stored Procedure performance testing - time
+    /// </summary>
+    private async Task IterateCarListWithStoredProcedure()
+    {
+        // Start timer
+        var stopwatch = Stopwatch.StartNew();
+        startTimeWithStoredProcedure = DateTime.Now.ToString();
+
+        carCountWithStoredProcedure = await CarService.GetCarCountWithNameStartingWithAsync("HEY");
+
+        // Stop timer
+        stopwatch.Stop();
+        endTimeWithStoredProcedure = DateTime.Now.ToString();
+    }
+
+
 
     /// <summary>
     /// Sort the values by Year ascending

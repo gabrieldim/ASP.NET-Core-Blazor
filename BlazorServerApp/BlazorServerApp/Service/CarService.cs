@@ -1,4 +1,6 @@
 ﻿using BlazorServerApp.Models;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -46,5 +48,25 @@ namespace BlazorServerApp.Service
             _dbContext.Cars.Add(car);
             _dbContext.SaveChanges();
         }
+
+        public async Task<int> GetCarCountWithNameStartingWithAsync(string name)
+        {
+            var parameter = new SqlParameter("@name", name);
+            var commandText = "EXEC GetCarCountWithNameStartingWith @name";
+            var carCountTask = _dbContext.Database.ExecuteSqlRawAsync(commandText, parameter);
+
+            try
+            {
+                var carCount = await carCountTask;
+                return (int)carCount;
+            }
+            catch (Exception ex)
+            {
+                // Handle or log the exception accordingly
+                throw;
+            }
+        }
+
+
     }
 }
