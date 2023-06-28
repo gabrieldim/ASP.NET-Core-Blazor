@@ -49,6 +49,11 @@ namespace BlazorServerApp.Service
             _dbContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Get car count with name starting by @name.
+        /// </summary>
+        /// <param name="name">The search string.</param>
+        /// <returns></returns>
         public async Task<int> GetCarCountWithNameStartingWithAsync(string name)
         {
             var parameter = new SqlParameter("@name", name);
@@ -57,12 +62,13 @@ namespace BlazorServerApp.Service
 
             try
             {
-                var carCount = await carCountTask;
-                return (int)carCount;
+                var carCount = await carCountTask; 
+                return (int)carCount; 
             }
             catch (Exception ex)
             {
-                // Handle or log the exception accordingly
+
+                Console.WriteLine("Error:" + ex.ToString());
                 throw;
             }
         }

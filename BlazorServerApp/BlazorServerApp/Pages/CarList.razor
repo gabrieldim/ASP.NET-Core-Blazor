@@ -148,9 +148,10 @@
     {
         carList = CarService.getCars();
         base.OnInitialized();
-        for (var i = 1; i < 25000; i++)
+        Car car;
+        for (var i = 1; i < 500; i++)
         {
-            Car car = new Car();
+            car = new Car();
 
             if (i > 250 && i < 350)
             {
@@ -178,7 +179,7 @@
         var stopwatch = Stopwatch.StartNew();
         startTimeWithLambdaExpression = DateTime.Now.ToString();
 
-        counterWithLambdaExpression = carList.Count(car => car.name.StartsWith("Test"));
+        counterWithLambdaExpression = carList.Count(car => car.name.StartsWith("HEY"));
 
         // Stop timer
         stopwatch.Stop();

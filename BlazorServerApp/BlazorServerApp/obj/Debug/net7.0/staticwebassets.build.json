@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dghx3Ej+HJ+bi9NftuysZzP9cjr4NIwoy0yiDC/G4yo=",
+  "Hash": "FUcZCCdW0FEDoZJPc6SFWrewEpx9F/Zbzqnr8DPTg1w=",
   "Source": "BlazorServerApp",
   "BasePath": "_content/BlazorServerApp",
   "Mode": "Default",
@@ -238,23 +238,6 @@
       "OriginalItemSpec": "C:\\Users\\Gabriel Dimitrievski\\Desktop\\dotNetBlazor\\BlazorServerApp\\BlazorServerApp\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\BlazorServerApp.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\Gabriel Dimitrievski\\Desktop\\dotNetBlazor\\BlazorServerApp\\BlazorServerApp\\wwwroot\\chart.js",
-      "SourceId": "BlazorServerApp",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Gabriel Dimitrievski\\Desktop\\dotNetBlazor\\BlazorServerApp\\BlazorServerApp\\wwwroot\\",
-      "BasePath": "_content/BlazorServerApp",
-      "RelativePath": "chart.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\chart.js"
-    },
-    {
       "Identity": "C:\\Users\\Gabriel Dimitrievski\\Desktop\\dotNetBlazor\\BlazorServerApp\\BlazorServerApp\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "BlazorServerApp",
       "SourceType": "Discovered",
@@ -474,6 +457,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.png"
+    },
+    {
+      "Identity": "C:\\Users\\Gabriel Dimitrievski\\Desktop\\dotNetBlazor\\BlazorServerApp\\BlazorServerApp\\wwwroot\\js\\chart.js",
+      "SourceId": "BlazorServerApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Gabriel Dimitrievski\\Desktop\\dotNetBlazor\\BlazorServerApp\\BlazorServerApp\\wwwroot\\",
+      "BasePath": "_content/BlazorServerApp",
+      "RelativePath": "js/chart.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\chart.js"
     }
   ]
 }
