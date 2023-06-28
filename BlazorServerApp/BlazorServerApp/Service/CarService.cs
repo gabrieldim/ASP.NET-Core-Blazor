@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace BlazorServerApp.Service
@@ -56,22 +57,28 @@ namespace BlazorServerApp.Service
         /// <returns></returns>
         public async Task<int> GetCarCountWithNameStartingWithAsync(string name)
         {
-            var parameter = new SqlParameter("@name", name);
-            var commandText = "EXEC GetCarCountWithNameStartingWith @name";
-            var carCountTask = _dbContext.Database.ExecuteSqlRawAsync(commandText, parameter);
-
-            try
+            using (var connection = new SqlConnection(_dbContext.Database.GetConnectionString()))
             {
-                var carCount = await carCountTask; 
-                return (int)carCount; 
-            }
-            catch (Exception ex)
-            {
+                await connection.OpenAsync();
 
-                Console.WriteLine("Error:" + ex.ToString());
-                throw;
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "GetCarCountWithNameStartingWith";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@name", name);
+
+                    return (int)await command.ExecuteScalarAsync();
+                }
             }
         }
+
+
+
+
+
+
+
+
 
 
     }

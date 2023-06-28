@@ -13,7 +13,6 @@
 
 <h1>Cars Data</h1>
 <br />
-<p><i>If the car has passed over <b>200,000 km</b>, it's not recommended to buy it if you are planning long distance trips.</i></p>
 
 <h2>Add Car</h2>
 <button class="btn btn-primary" @onclick="ShowAddForm">Add Car</button>
@@ -67,23 +66,10 @@
 
 <br />
 <br />
-<br />
 
-<h4>Lambda Expression performance testing: </h4>
-<button @onclick="IterateCarList">Iterate Car List</button>
-<p>Start Time: <label>@startTimeWithLambdaExpression</label></p>
-<p>End Time: <label>@endTimeWithLambdaExpression</label></p>
-<p>Counter: <label>@counterWithLambdaExpression</label></p>
 
-<br />
-<br />
-<br />
+<p><i>If the car has passed over <b>200,000 km</b>, it's not recommended to buy it if you are planning long distance trips.</i></p>
 
-<h4>Storage Procedure performance testing: </h4>
-<button @onclick="IterateCarListWithStoredProcedure">Iterate Car List</button>
-<p>Start Time: <label>@startTimeWithStoredProcedure</label></p>
-<p>End Time: <label>@endTimeWithStoredProcedure</label></p>
-<p>Counter: <label>@carCountWithStoredProcedure</label></p>
 
 <table class="table">
     <thead>
@@ -126,6 +112,25 @@
 <button class="btn btn-primary" @onclick="ExportToExcel">Export to Excel</button>
 
 <br /> <br /> <br />
+
+
+<h4>Lambda Expression performance testing: </h4>
+<button @onclick="IterateCarList">Iterate Car List</button>
+<p>Start Time: <label>@startTimeWithLambdaExpression</label></p>
+<p>End Time: <label>@endTimeWithLambdaExpression</label></p>
+<p>Counter: <label>@counterWithLambdaExpression</label></p>
+
+<br />
+<br />
+
+<h4>Storage Procedure performance testing: </h4>
+<button @onclick="IterateCarListWithStoredProcedure">Iterate Car List</button>
+<p>Start Time: <label>@startTimeWithStoredProcedure</label></p>
+<p>End Time: <label>@endTimeWithStoredProcedure</label></p>
+<p>Counter: <label>@carCountWithStoredProcedure</label></p>
+
+<br />
+<br />
 
 @code {
 
@@ -180,7 +185,7 @@
         var stopwatch = Stopwatch.StartNew();
         startTimeWithLambdaExpression = DateTime.Now.ToString();
 
-        counterWithLambdaExpression = carList.Count(car => car.name.StartsWith("HEY"));
+        counterWithLambdaExpression = carList.Count(car => car.name.StartsWith("BMW"));
 
         // Stop timer
         stopwatch.Stop();
@@ -196,7 +201,7 @@
         var stopwatch = Stopwatch.StartNew();
         startTimeWithStoredProcedure = DateTime.Now.ToString();
 
-        carCountWithStoredProcedure = await CarService.GetCarCountWithNameStartingWithAsync("HEY");
+        carCountWithStoredProcedure = await CarService.GetCarCountWithNameStartingWithAsync("BMW");
 
         // Stop timer
         stopwatch.Stop();
