@@ -15,51 +15,55 @@
 <br />
 <p><i>If the car has passed over <b>200,000 km</b>, it's not recommended to buy it if you are planning long distance trips.</i></p>
 
-
+<h2>Add Car</h2>
 <button class="btn btn-primary" @onclick="ShowAddForm">Add Car</button>
+
+
 
 @if (showAddForm)
 {
-    <h2>Add Car</h2>
     <div>
         <label>Name:</label>
         <input type="text" @bind="@newCar.name" />
+        @if (string.IsNullOrWhiteSpace(newCar.name))
+        {
+            <p class="text-danger">Please enter a name.</p>
+        }
+
+        <br />
 
         <label>Year:</label>
-        <input type="number" @bind="@newCar.year" />
+        <input type="text" @bind="@newCar.year" />
+        @if (newCar.year <= 0 || string.IsNullOrWhiteSpace(newCar.year.ToString()))
+        {
+            <p class="text-danger">Please enter a valid year.</p>
+        }
+
+        <br />
 
         <label>Price:</label>
         <input type="number" @bind="@newCar.price" />
+        @if (newCar.price <= 0 || string.IsNullOrWhiteSpace(newCar.price.ToString()))
+        {
+            <p class="text-danger">Please enter a valid price.</p>
+        }
+
+        <br />
 
         <label>Kilometers:</label>
         <input type="number" @bind="@newCar.km" />
-
-        <div>
-            @if (string.IsNullOrWhiteSpace(newCar.name))
-            {
-                <p class="text-danger">Please enter a name.</p>
-            }
-
-            @if (newCar.year <= 0)
-            {
-                <p class="text-danger">Please enter a valid year. (above 1980 only)</p>
-            }
-
-            @if (newCar.price <= 0)
-            {
-                <p class="text-danger">Please enter a valid price.</p>
-            }
-
-            @if (newCar.km <= 0)
-            {
-                <p class="text-danger">Please enter a valid number of kilometers.</p>
-            }
-        </div>
+        @if (newCar.km <= 0 || string.IsNullOrWhiteSpace(newCar.km.ToString()))
+        {
+            <p class="text-danger">Please enter a valid number of kilometers.</p>
+        }
+        <br />
 
         <button class="btn btn-success" @onclick="AddCar" disabled="@(!IsCarValid())">Add</button>
         <button class="btn btn-danger" @onclick="CancelAdd">Cancel</button>
     </div>
 }
+
+
 
 <br />
 <br />
@@ -122,9 +126,6 @@
 <button class="btn btn-primary" @onclick="ExportToExcel">Export to Excel</button>
 
 <br /> <br /> <br />
-
-
-
 
 @code {
 
@@ -202,8 +203,6 @@
         endTimeWithStoredProcedure = DateTime.Now.ToString();
     }
 
-
-
     /// <summary>
     /// Sort the values by Year ascending
     /// </summary>
@@ -242,12 +241,15 @@
     /// </summary>
     private bool IsCarValid()
     {
-        if(string.IsNullOrWhiteSpace(newCar.name) || newCar.year <= 1980 || newCar.price <= 0 || newCar.km <= 0)
+        if (string.IsNullOrWhiteSpace(newCar.name) || newCar.year <= 0 || newCar.price <= 0 || newCar.km <= 0
+        || string.IsNullOrWhiteSpace(newCar.year.ToString()) || string.IsNullOrWhiteSpace(newCar.price.ToString()) ||
+        string.IsNullOrWhiteSpace(newCar.km.ToString()))
         {
             return false;
         }
         return true;
     }
+
 
     /// <summary>
     /// Flag, whether to show to form for Adding a new car or not.

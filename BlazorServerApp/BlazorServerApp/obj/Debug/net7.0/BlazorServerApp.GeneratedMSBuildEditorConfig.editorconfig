@@ -32,12 +32,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29udGFjdENvbXBvbmVudHNcQ29udGFjdExpc3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Gabriel Dimitrievski/Desktop/dotNetBlazor/BlazorServerApp/BlazorServerApp/Pages/HomePage.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVBhZ2UucmF6b3I=
+[C:/Users/Gabriel Dimitrievski/Desktop/dotNetBlazor/BlazorServerApp/BlazorServerApp/Pages/ContactUs.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29udGFjdFVzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Gabriel Dimitrievski/Desktop/dotNetBlazor/BlazorServerApp/BlazorServerApp/Pages/InitialData.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5pdGlhbERhdGEucmF6b3I=
+[C:/Users/Gabriel Dimitrievski/Desktop/dotNetBlazor/BlazorServerApp/BlazorServerApp/Pages/HomePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVBhZ2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Gabriel Dimitrievski/Desktop/dotNetBlazor/BlazorServerApp/BlazorServerApp/Pages/RevenueData.razor]

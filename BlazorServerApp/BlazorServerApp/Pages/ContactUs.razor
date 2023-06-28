@@ -26,9 +26,9 @@
     {
         isMessageSent = false;
         var message = new MimeMessage();
-        message.From.Add(new MailboxAddress("Client Message", "gabriel.dccount200031 @gmail.com"));
-        message.To.Add(new MailboxAddress("Car Dealership Manager", "gabriel.dccount200031 @gmail.com"));
-        message.Subject = "New Message";
+        message.From.Add(new MailboxAddress("Client Message", "testgabrieltestac@gmail.com"));
+        message.To.Add(new MailboxAddress("Car Dealership Manager", "testgabrieltestac@gmail.com"));
+        message.Subject = "New Client Message";
         message.Body = new TextPart("plain")
             {
                 Text = messageText
@@ -37,9 +37,7 @@
         using (var client = new SmtpClient())
         {
             await client.ConnectAsync("smtp.gmail.com", 587, false);
-
-            await client.AuthenticateAsync("gabriel.dccount200031@gmail.com", "uufbbegusyvsazhz");
-
+            await client.AuthenticateAsync("testgabrieltestac@gmail.com", "itwsngxmtylicqda");
             await client.SendAsync(message);
             await client.DisconnectAsync(true);
         }
