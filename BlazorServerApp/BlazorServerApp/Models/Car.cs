@@ -5,7 +5,9 @@ namespace BlazorServerApp.Models;
 
 public partial class Car
 {
-    public string name { get; set; } = null!;
+    public int id { get; set; }
+
+    public string? name { get; set; }
 
     public int? year { get; set; }
 

@@ -5,7 +5,7 @@ namespace BlazorServerApp.Models;
 
 public partial class Revenue
 {
-    public double year { get; set; }
+    public double Year { get; set; }
 
-    public double? amount { get; set; }
+    public double? Amount { get; set; }
 }

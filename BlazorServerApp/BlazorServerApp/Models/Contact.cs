@@ -5,7 +5,7 @@ namespace BlazorServerApp.Models;
 
 public partial class Contact
 {
-    public string firstName { get; set; } = null!;
+    public string? firstName { get; set; }
 
     public string? lastName { get; set; }
 
