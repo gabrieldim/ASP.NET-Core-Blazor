@@ -67,6 +67,20 @@
 <br />
 <br />
 
+<div style="margin-top: 10px; margin-bottom: 10px;">
+
+    <label>Year From:</label>
+    <input type="number" @bind="@yearFrom" />
+    <br />
+
+    <label>Year To:</label>
+    <input type="number" @bind="@yearTo" />
+    <br /><br />
+
+    <button class="btn btn-primary" @onclick="FilterCarsByYear">Apply Filter</button>
+    <button class="btn btn-secondary" @onclick="ResetFilter">Reset Filter</button>
+</div>
+
 
 <p><i>If the car has passed over <b>200,000 km</b>, it's not recommended to buy it if you are planning long distance trips.</i></p>
 
@@ -94,7 +108,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var car in carList)
+        @foreach (var car in filteredCarList)
         {
             <tr style="@(car.km > 200000 ? "color: red;" : "color: green;")">
                 <td>@car.name</td>
@@ -149,12 +163,19 @@
     private string startTimeWithStoredProcedure;
     private string endTimeWithStoredProcedure;
 
+
+    private int yearFrom;
+    private int yearTo;
+    private List<Car> filteredCarList;
+
     [Inject]
     public ICarService CarService { get; set; }
 
     protected override void OnInitialized()
     {
         carList = CarService.getCars();
+
+        filteredCarList = carList;
         base.OnInitialized();
         Car car;
         for (var i = 1; i < 500; i++)
@@ -215,7 +236,7 @@
     /// </summary>
     private void SortByYearAscending()
     {
-        carList = carList.OrderBy(c => c.year).ToList();
+        filteredCarList = filteredCarList.OrderBy(c => c.year).ToList();
     }
 
     /// <summary>
@@ -223,7 +244,7 @@
     /// </summary>
     private void SortByYearDescending()
     {
-        carList = carList.OrderByDescending(c => c.year).ToList();
+        filteredCarList = filteredCarList.OrderByDescending(c => c.year).ToList();
     }
 
     /// <summary>
@@ -231,7 +252,7 @@
     /// </summary>
     private void SortByPriceAscending()
     {
-        carList = carList.OrderBy(c => c.price).ToList();
+        filteredCarList = filteredCarList.OrderBy(c => c.price).ToList();
     }
 
     /// <summary>
@@ -239,7 +260,7 @@
     /// </summary>
     private void SortByPriceDescending()
     {
-        carList = carList.OrderByDescending(c => c.price).ToList();
+        filteredCarList = filteredCarList.OrderByDescending(c => c.price).ToList();
     }
 
 
@@ -312,7 +333,7 @@ private void ExportToExcel()
         worksheet.Cells[1, 4].Value = "Kilometers";
 
         int row = 2;
-        foreach (var car in carList)
+        foreach (var car in filteredCarList)
         {
             worksheet.Cells[row, 1].Value = car.name;
             worksheet.Cells[row, 2].Value = car.year;
@@ -349,8 +370,6 @@ private void ExportToExcel()
     }
 }
 
-
-
     /// <summary>
     /// Delete a car from the List of available cars.
     /// </summary>
@@ -358,6 +377,26 @@ private void ExportToExcel()
     {
         carList.Remove(car);
         CarService.DeleteCar(car);
+    }
+
+    /// <summary>
+    /// Filter the cars based on the selected year range.
+    /// </summary>
+    private void FilterCarsByYear()
+    {
+        filteredCarList = carList
+            .Where(car => car.year >= yearFrom && car.year <= yearTo)
+            .ToList();
+    }
+
+    /// <summary>
+    /// Reset the year filter and show all cars.
+    /// </summary>
+    private void ResetFilter()
+    {
+        yearFrom = 0;
+        yearTo = 0;
+        filteredCarList = carList;
     }
 
 }
