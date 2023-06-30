@@ -2,20 +2,18 @@
 @using MailKit.Net.Smtp
 @using MimeKit
 
-<h3>Send us a message</h3>
+<h3>Any questions?</h3>
 
+<div class="container">
+    <label for="message" class="label">Send us a message:</label>
+    <textarea id="message" class="textarea" placeholder="Enter your message" @bind="@messageText"></textarea>
 
-<div style="width: 400px; height: 400px;">
-    <label for="message">Message:</label>
-    <textarea id="message" style="width: 100%; height: 45%;" @bind="@messageText"></textarea>
-    <button @onclick="SendEmail">Send</button>
+    <button class="button" @onclick="SendEmail" style="margin-top:2%">Send</button>
     @if (isMessageSent)
     {
-        <label style="color: green;">Success!</label>
+        <label class="success-label" style="margin-left:2%">Success!</label>
     }
 </div>
-
-
 
 
 @code {
