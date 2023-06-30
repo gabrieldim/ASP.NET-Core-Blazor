@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FUcZCCdW0FEDoZJPc6SFWrewEpx9F/Zbzqnr8DPTg1w=",
+  "Hash": "7xiTAsz3BQwfr2S2bGeSn4wlylFd2skVheLKDBSGbUo=",
   "Source": "BlazorServerApp",
   "BasePath": "_content/BlazorServerApp",
   "Mode": "Default",
@@ -457,6 +457,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.png"
+    },
+    {
+      "Identity": "C:\\Users\\Gabriel Dimitrievski\\Desktop\\dotNetBlazor\\BlazorServerApp\\BlazorServerApp\\wwwroot\\images\\car.png",
+      "SourceId": "BlazorServerApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Gabriel Dimitrievski\\Desktop\\dotNetBlazor\\BlazorServerApp\\BlazorServerApp\\wwwroot\\",
+      "BasePath": "_content/BlazorServerApp",
+      "RelativePath": "images/car.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\car.png"
     },
     {
       "Identity": "C:\\Users\\Gabriel Dimitrievski\\Desktop\\dotNetBlazor\\BlazorServerApp\\BlazorServerApp\\wwwroot\\js\\chart.js",

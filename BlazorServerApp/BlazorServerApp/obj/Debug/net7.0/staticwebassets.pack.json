@@ -57,6 +57,10 @@
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
+      "Id": "C:\\Users\\Gabriel Dimitrievski\\Desktop\\dotNetBlazor\\BlazorServerApp\\BlazorServerApp\\wwwroot\\images\\car.png",
+      "PackagePath": "staticwebassets\\images\\car.png"
+    },
+    {
       "Id": "C:\\Users\\Gabriel Dimitrievski\\Desktop\\dotNetBlazor\\BlazorServerApp\\BlazorServerApp\\wwwroot\\js\\chart.js",
       "PackagePath": "staticwebassets\\js\\chart.js"
     },
