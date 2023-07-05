@@ -23,7 +23,7 @@ public partial class TestContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-HEI2R4T\\SQLEXPRESS;Database=Test;Trusted_Connection=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-HEI2R4T\\SQLEXPRESS;Database=CarDealership;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -32,9 +32,9 @@ public partial class TestContext : DbContext
             entity.HasKey(e => e.id).HasName("PK__Car__3213E83FCD6B2901");
 
             entity.ToTable("Car");
-
+            
             entity.Property(e => e.id)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("id");
             entity.Property(e => e.km).HasColumnName("km");
             entity.Property(e => e.name)

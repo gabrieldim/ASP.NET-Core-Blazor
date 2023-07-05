@@ -46,13 +46,6 @@ namespace BlazorServerApp.Service
         /// </summary>
         public void AddCar(Car car)
         {
-            int nextId = -1;
-            nextId = _dbContext.Cars.Max(c => c.id) + 1;
-            if(nextId == -1)
-            {
-                nextId = 0;
-            }
-            car.id = nextId;
             _dbContext.Cars.Add(car);
             _dbContext.SaveChanges();
         }

@@ -17,8 +17,6 @@
 <h2>Add Car</h2>
 <button class="btn btn-primary" @onclick="ShowAddForm">Add Car</button>
 
-
-
 @if (showAddForm)
 {
     <div>
@@ -128,7 +126,7 @@
 <br /> <br /> <br />
 
 
-<h3> • Performance is based on searching by "BMW%" and return the count. </h3>
+<h3> • Performance is based on searching by "BMW%" and returns number of rows. </h3>
 <br />
 <h4>Lambda Expression performance testing: </h4>
 <button @onclick="IterateCarList">Iterate Car List</button>
@@ -293,12 +291,12 @@
     private void AddCar()
     {
 
-       carList.Add(newCar);
-       CarService.AddCar(newCar);
+        carList.Add(newCar);
+        CarService.AddCar(newCar);
 
-       showAddForm = false;
-       newCar = new Car();
-        
+        showAddForm = false;
+        newCar = new Car();
+
     }
 
     /// <summary>
@@ -318,63 +316,64 @@
     /// This method uses the EPPlus library to generate an Excel file from car data.
     /// </remarks>
     /// <exception cref="LicenseException">Thrown if the license for EPPlus is not valid.</exception>
-private void ExportToExcel()
-{
-    ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-
-    using (var package = new ExcelPackage())
+    private void ExportToExcel()
     {
-        var worksheet = package.Workbook.Worksheets.Add("Car Data");
+        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-        // headers
-        worksheet.Cells[1, 1].Value = "Name";
-        worksheet.Cells[1, 2].Value = "Year";
-        worksheet.Cells[1, 3].Value = "Price";
-        worksheet.Cells[1, 4].Value = "Kilometers";
-
-        int row = 2;
-        foreach (var car in filteredCarList)
+        using (var package = new ExcelPackage())
         {
-            worksheet.Cells[row, 1].Value = car.name;
-            worksheet.Cells[row, 2].Value = car.year;
-            worksheet.Cells[row, 3].Value = car.price;
-            worksheet.Cells[row, 4].Value = car.km;
+            var worksheet = package.Workbook.Worksheets.Add("Car Data");
 
-            // Check the value of "km" and apply text color
-            if (car.km > 200000)
+            // headers
+            worksheet.Cells[1, 1].Value = "Name";
+            worksheet.Cells[1, 2].Value = "Year";
+            worksheet.Cells[1, 3].Value = "Price";
+            worksheet.Cells[1, 4].Value = "Kilometers";
+
+            int row = 2;
+            foreach (var car in filteredCarList)
             {
-                worksheet.Cells[row, 1, row, 4].Style.Font.Color.SetColor(System.Drawing.Color.Red);
+                worksheet.Cells[row, 1].Value = car.name;
+                worksheet.Cells[row, 2].Value = car.year;
+                worksheet.Cells[row, 3].Value = car.price;
+                worksheet.Cells[row, 4].Value = car.km;
+
+                // Check the value of "km" and apply text color
+                if (car.km > 200000)
+                {
+                    worksheet.Cells[row, 1, row, 4].Style.Font.Color.SetColor(System.Drawing.Color.Red);
+                }
+                else
+                {
+                    worksheet.Cells[row, 1, row, 4].Style.Font.Color.SetColor(System.Drawing.Color.Green);
+                }
+
+                row++;
             }
-            else
+
+            worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+            // Add borders to all cells
+            var border = worksheet.Cells[1, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column].Style.Border;
+            border.Top.Style = border.Left.Style = border.Right.Style = border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+
+            using (var stream = new MemoryStream())
             {
-                worksheet.Cells[row, 1, row, 4].Style.Font.Color.SetColor(System.Drawing.Color.Green);
+                package.SaveAs(stream);
+
+                var buffer = stream.ToArray();
+                var mimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                NavigationManager.NavigateTo($"data:{mimeType};base64,{Convert.ToBase64String(buffer)}", true);
             }
-
-            row++;
-        }
-
-        worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
-
-        // Add borders to all cells
-        var border = worksheet.Cells[1, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column].Style.Border;
-        border.Top.Style = border.Left.Style = border.Right.Style = border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
-
-        using (var stream = new MemoryStream())
-        {
-            package.SaveAs(stream);
-
-            var buffer = stream.ToArray();
-            var mimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            NavigationManager.NavigateTo($"data:{mimeType};base64,{Convert.ToBase64String(buffer)}", true);
         }
     }
-}
 
     /// <summary>
     /// Delete a car from the List of available cars.
     /// </summary>
     private void DeleteCar(Car car)
     {
+        filteredCarList.Remove(car);
         carList.Remove(car);
         CarService.DeleteCar(car);
     }

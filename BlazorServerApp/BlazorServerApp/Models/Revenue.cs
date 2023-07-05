@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlazorServerApp.Models;
 
-public partial class Revenue
+public  class Revenue
 {
     public double Year { get; set; }
 
